@@ -1,4 +1,7 @@
 print('Консольный файловый менеджер: ')
+import os
+import sys
+import shutil
 
 while True:
     print('1. создать папку')
@@ -16,22 +19,35 @@ while True:
 
     choice = input('Выберите пункт меню: ')
     if choice == '1':
-        pass
+        name_folder = input('Введите название папки: ')
+        # проверка на существование
+        if not os.path.exists(name_folder):
+            os.mkdir(name_folder)
+            print(f'Папка {name_folder} создана')
+        else:
+            print(f'Папка с именем {name_folder} уже существует')
 
     elif choice == '2':
-        pass
+        delete_folder = input('Введите название файла/папки, который(ую) необходимо удалить:  ')
+        os.rmdir(delete_folder)
+        print(f'Папка {delete_folder} удалена')
+
     elif choice == '3':
-        pass
+        copy_folder = input('Введите название файла/папки, который(ую) необходимо копировать:  ')
+        new_folder = input('Введите новое название файла/папки:  ')
+        shutil.copy(copy_folder, new_folder)
+
     elif choice == '4':
-        pass
+        print('Текущая директория: ', os.getcwd())
+
     elif choice == '5':
-        pass
+        print(os.listdir())
     elif choice == '6':
         pass
     elif choice == '7':
-        pass
+        print(os.name())
     elif choice == '8':
-        pass
+        print('Туз Любовь')
     elif choice == '9':
         pass
     elif choice == '10':
