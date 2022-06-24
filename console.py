@@ -1,7 +1,10 @@
+import fnmatch
+
 print('Консольный файловый менеджер: ')
 import os
-import sys
 import shutil
+import sys
+from famous_persons import get_person_and_question
 
 while True:
     print('1. создать папку')
@@ -14,8 +17,7 @@ while True:
     print('8. создатель программы')
     print('9. играть в викторину')
     print('10. мой банковский счет')
-    print('11. смена рабочей директории')
-    print('12. выход')
+    print('11. выход')
 
     choice = input('Выберите пункт меню: ')
     if choice == '1':
@@ -40,21 +42,35 @@ while True:
     elif choice == '4':
         print('Текущая директория: ', os.getcwd())
 
-    elif choice == '5':
-        print(os.listdir())
-    elif choice == '6':
-        pass
+    elif choice == '5': # посмотреть папки
+        dirs_view = [d for d in os.listdir('.') if os.path.isdir(d)]
+        print(dirs_view)
+
+    elif choice == '6': # посмотреть файлы
+        files_view = [f for f in os.listdir('.') if os.path.isfile(f)]
+        print(files_view)
+
+        # list_of_files = os.listdir('.')
+        # pattern = '*.py'
+        # for i in list_of_files:
+        #     if fnmatch.fnmatch(i, pattern):
+        #         print(i)
+
     elif choice == '7':
-        print(os.name())
+        print('My OS is', sys.platform, '(', os.name, ')')
     elif choice == '8':
         print('Туз Любовь')
     elif choice == '9':
-        pass
+        rounds = int(input('Сколько раз вы хотите играть?'))
+
+        for i in range(rounds):
+            get_person_and_question()
+
+        print('Пока!')
     elif choice == '10':
-        pass
+        import shop
+
     elif choice == '11':
-        pass
-    elif choice == '12':
         break
     else:
         print('Неверный пункт меню')
